@@ -145,7 +145,7 @@ export default function PlansPage() {
             ) : (
               <button
                 onClick={() => handleSubscribe(p.id)}
-                disabled={loadingPlan === p.id || currentUser.plan === p.id }
+                disabled={loadingPlan === p.id || currentUser.plan === p.id || !isOpen }
                 className={`${p.btnStyle} text-sm font-bold px-4 py-2.5 rounded-xl transition-all cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed`}
               >
                 {loadingPlan === p.id ? "Processing..." :
