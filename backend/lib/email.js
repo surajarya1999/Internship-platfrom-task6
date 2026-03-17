@@ -1,5 +1,9 @@
 const nodemailer = require("nodemailer");
 
+console.log("EMAIL_USER:", process.env.EMAIL_USER);
+console.log("EMAIL_PASS:", process.env.EMAIL_PASS ? "EXISTS" : "MISSING");
+console.log("EMAIL_FROM:", process.env.EMAIL_FROM);
+
 const transporter = nodemailer.createTransport({
   host: "smtp-relay.brevo.com",
   port: 465,
@@ -17,6 +21,9 @@ const PLAN_INFO = {
 };
 
 const sendInvoiceEmail = async ({ name, email, plan, amount, invoiceNumber, paymentId }) => {
+  console.log("EMAIL_USER:", process.env.EMAIL_USER);
+  console.log("EMAIL_PASS:", process.env.EMAIL_PASS ? "EXISTS" : "MISSING");
+  console.log("EMAIL_FROM:", process.env.EMAIL_FROM);
   const p = PLAN_INFO[plan];
   const date = new Date().toLocaleDateString("en-IN", { day: "2-digit", month: "long", year: "numeric" });
 
