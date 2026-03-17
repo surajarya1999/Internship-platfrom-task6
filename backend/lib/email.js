@@ -4,14 +4,25 @@ console.log("EMAIL_USER:", process.env.EMAIL_USER);
 console.log("EMAIL_PASS:", process.env.EMAIL_PASS ? "EXISTS" : "MISSING");
 console.log("EMAIL_FROM:", process.env.EMAIL_FROM);
 
+const nodemailer = require("nodemailer");
+
 const transporter = nodemailer.createTransport({
   host: "smtp-relay.brevo.com",
-  port: 465,
-  secure: true,
+  port: 587,
+  secure: false,
   auth: {
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASS,
   },
+});
+
+// 👇 YAHAN LAGAO (IMPORTANT)
+transporter.verify((error, success) => {
+  if (error) {
+    console.log("❌ SMTP ERROR:", error);
+  } else {
+    console.log("✅ SMTP READY");
+  }
 });
 
 const PLAN_INFO = {
